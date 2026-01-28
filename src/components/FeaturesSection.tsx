@@ -1,49 +1,63 @@
-import React from 'react';
-import { motion } from 'framer-motion';
-import { CheckCircle2, ShieldCheck, Microscope, Waves } from 'lucide-react';
-import { EntranceAnimation } from './EntranceAnimation';
+import { Headline } from "./Typography";
+import { EntranceAnimation } from "./EntranceAnimation";
+import { LimestoneBorder } from "./LimestoneBorder";
+import { CheckCircle2 } from "lucide-react";
 
 const features = [
   {
-    icon: <Microscope className="w-8 h-8 text-accent" />,
-    title: "Surgical Clarity",
-    description: "High-key surgical environments utilize the latest in medical lighting and ultra-sterile airflow systems."
+    title: "Precision Diagnostics",
+    description: "State-of-the-art imaging and analysis to tailor every treatment to your unique biology.",
+    icon: CheckCircle2
   },
   {
-    icon: <ShieldCheck className="w-8 h-8 text-accent" />,
-    title: "Clinical Precision",
-    description: "Board-certified expertise meeting the highest standards of Texas medical licensure and safety protocols."
+    title: "Curated Recovery",
+    description: "Post-treatment protocols designed in a sanctuary-inspired environment for optimal healing.",
+    icon: CheckCircle2
   },
   {
-    icon: <Waves className="w-8 h-8 text-accent" />,
-    title: "Aesthetic Rhythm",
-    description: "A patient journey designed for flow, reducing anxiety through architectural layout and ambient soundscapes."
+    title: "Artistic Refinement",
+    description: "Expert injectors who value subtle, natural results that honor your heritage.",
+    icon: CheckCircle2
   }
 ];
 
 export function FeaturesSection() {
   return (
-    <section className="py-32 bg-secondary/50">
-      <div className="container mx-auto px-gutter">
-        <EntranceAnimation>
-          <div className="text-center max-w-2xl mx-auto mb-20">
-            <h2 className="text-5xl mb-6">Built for Excellence</h2>
-            <p className="text-foreground/60">Modern surgery demands more than just technology. It requires an atmosphere of trust, precision, and tranquility.</p>
-          </div>
-        </EntranceAnimation>
-
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-16">
-          {features.map((feature, idx) => (
-            <EntranceAnimation key={idx} delay={idx * 0.1}>
-              <div className="flex flex-col items-center text-center">
-                <div className="mb-8 p-6 bg-white shadow-xl shadow-primary/5 rounded-full">
-                  {feature.icon}
-                </div>
-                <h3 className="text-2xl mb-4 font-bold tracking-tight">{feature.title}</h3>
-                <p className="text-foreground/60 leading-relaxed">{feature.description}</p>
+    <section className="py-32 bg-background relative">
+      <div className="container px-6">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+          
+          <div className="lg:col-span-5 sticky top-32">
+            <EntranceAnimation>
+              <Headline as="h4" className="mb-4">Our Philosophy</Headline>
+              <Headline as="h2" className="mb-8">The Harmony of Science & Soul</Headline>
+              <p className="text-lg text-muted-foreground leading-relaxed mb-12">
+                We believe that aesthetic excellence shouldn't feel sterile. Our practice bridges the gap between surgical-grade precision and the hospitality of a Texan retreat.
+              </p>
+              
+              <div className="aspect-[4/5] relative rounded-2xl overflow-hidden soft-shadow">
+                ///IMG:natural sunlight in a modern ranch living room|portrait|cinematic///
               </div>
             </EntranceAnimation>
-          ))}
+          </div>
+
+          <div className="lg:col-span-6 lg:col-start-7 space-y-24">
+            {features.map((feature, idx) => (
+              <div key={idx} className="relative pl-12">
+                <LimestoneBorder />
+                <EntranceAnimation delay={idx * 0.1}>
+                  <feature.icon className="w-10 h-10 text-accent mb-6" />
+                  <Headline as="h3" className="mb-4">{feature.title}</Headline>
+                  <p className="text-lg text-muted-foreground">
+                    {feature.description}
+                  </p>
+                  <div className="mt-8 aspect-video relative rounded-xl overflow-hidden soft-shadow grayscale hover:grayscale-0 transition-all duration-700">
+                     ///IMG:medical professional at work|landscape|clinical///
+                  </div>
+                </EntranceAnimation>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </section>

@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,700;1,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=Inter:wght@300;400;500;600&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -6,27 +6,20 @@
 
 @layer base {
   :root {
-    /* Manifesto: primary 210 35% 35%, secondary 35 30% 92%, accent 28 75% 55%, background 40 10% 98%, foreground 210 25% 12%, muted 35 15% 85% */
-    --background: 40 10% 98%;
-    --foreground: 210 25% 12%;
-
-    --primary: 210 35% 35%;
-    --primary-foreground: 40 10% 98%;
-
-    --secondary: 35 30% 92%;
-    --secondary-foreground: 210 35% 35%;
-
-    --accent: 28 75% 55%;
-    --accent-foreground: 40 10% 98%;
-
-    --muted: 35 15% 85%;
-    --muted-foreground: 210 25% 30%;
-
-    --border: 35 15% 80%;
-    --input: 35 15% 80%;
-    --ring: 210 35% 35%;
-    
-    --radius: 0rem;
+    --background: 40 20% 96%;
+    --foreground: 210 20% 15%;
+    --primary: 210 15% 25%;
+    --primary-foreground: 40 20% 98%;
+    --secondary: 35 45% 70%;
+    --secondary-foreground: 210 20% 15%;
+    --accent: 145 15% 50%;
+    --accent-foreground: 40 20% 98%;
+    --muted: 30 10% 85%;
+    --muted-foreground: 210 15% 35%;
+    --border: 30 10% 80%;
+    --input: 30 10% 80%;
+    --ring: 210 15% 25%;
+    --radius: 0.75rem;
   }
 }
 
@@ -35,31 +28,25 @@
     @apply border-border;
   }
   body {
-    @apply bg-background text-foreground selection:bg-accent/30 selection:text-foreground;
-    font-feature-settings: "rlig" 1, "calt" 1;
+    @apply bg-background text-foreground font-sans antialiased;
   }
   h1, h2, h3, h4 {
-    @apply font-editorial font-bold tracking-tight;
+    @apply font-serif;
   }
 }
 
 .limestone-texture {
-  background-image: url("https://www.transparenttextures.com/patterns/natural-paper.png");
-  opacity: 0.4;
+  background-image: url('https://www.transparenttextures.com/patterns/sandpaper.png');
+  background-repeat: repeat;
+  opacity: 0.15;
 }
 
-.glass-morphism {
-  @apply bg-white/20 backdrop-blur-md border border-white/30;
+.soft-shadow {
+  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.1);
 }
 
-.editorial-grid {
+.asymmetric-grid {
   display: grid;
   grid-template-columns: repeat(12, 1fr);
   gap: 2rem;
-}
-
-@media (min-width: 1024px) {
-  .editorial-grid {
-    gap: 4rem;
-  }
 }

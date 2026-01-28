@@ -2,21 +2,8 @@ import type { Config } from "tailwindcss";
 
 export default {
   darkMode: ["class"],
-  content: [
-    "./pages/**/*.{ts,tsx}",
-    "./components/**/*.{ts,tsx}",
-    "./app/**/*.{ts,tsx}",
-    "./src/**/*.{ts,tsx}",
-  ],
-  prefix: "",
+  content: ["./src/**/*.{ts,tsx}"],
   theme: {
-    container: {
-      center: true,
-      padding: "2rem",
-      screens: {
-        "2xl": "1400px",
-      },
-    },
     extend: {
       colors: {
         border: "hsl(var(--border))",
@@ -40,27 +27,18 @@ export default {
           DEFAULT: "hsl(var(--muted))",
           foreground: "hsl(var(--muted-foreground))",
         },
-        popover: {
-          DEFAULT: "hsl(var(--popover))",
-          foreground: "hsl(var(--popover-foreground))",
-        },
-        card: {
-          DEFAULT: "hsl(var(--card))",
-          foreground: "hsl(var(--card-foreground))",
-        },
       },
       fontFamily: {
+        serif: ["Playfair Display", "serif"],
         sans: ["Inter", "sans-serif"],
-        editorial: ["Playfair Display", "serif"],
-      },
-      spacing: {
-        gutter: "4rem",
       },
       letterSpacing: {
-        tightest: "-.075em",
-        tighter: "-.05em",
-        tight: "-.025em",
-        widest: ".25em",
+        premium: "0.15em",
+        tightest: "-0.04em",
+      },
+      backgroundImage: {
+        'limestone': "url('https://www.transparenttextures.com/patterns/sandpaper.png')",
+        'hero-gradient': "linear-gradient(to bottom, transparent, hsl(var(--background)))",
       },
     },
   },

@@ -1,13 +1,44 @@
-import React from 'react';
-import { motion } from 'framer-motion';
+import { motion } from "framer-motion";
+import { ReactNode } from "react";
 
-export function EntranceAnimation({ children, delay = 0 }: { children: React.ReactNode; delay?: number }) {
+interface EntranceAnimationProps {
+  children: ReactNode;
+  delay?: number;
+  direction?: "up" | "down" | "left" | "right";
+  className?: string;
+}
+
+export function EntranceAnimation({ 
+  children, 
+  delay = 0, 
+  direction = "up",
+  className = ""
+}: EntranceAnimationProps) {
+  const directions = {
+    up: { y: 40, x: 0 },
+    down: { y: -40, x: 0 },
+    left: { x: 40, y: 0 },
+    right: { x: -40, y: 0 },
+  };
+
   return (
     <motion.div
-      initial={{ opacity: 0, y: 30 }}
-      whileInView={{ opacity: 1, y: 0 }}
+      initial={{ 
+        opacity: 0, 
+        ...directions[direction] 
+      }}
+      whileInView={{ 
+        opacity: 1, 
+        x: 0, 
+        y: 0 
+      }}
       viewport={{ once: true, margin: "-100px" }}
-      transition={{ duration: 0.8, delay, ease: [0.21, 0.45, 0.32, 0.9] }}
+      transition={{ 
+        duration: 0.8, 
+        delay, 
+        ease: [0.21, 0.47, 0.32, 0.98] 
+      }}
+      className={className}
     >
       {children}
     </motion.div>
