@@ -1,24 +1,20 @@
-import { motion } from "framer-motion";
-import { Header } from "../components/Header";
-import { BannerSection } from "../components/BannerSection";
-import { FeaturesSection } from "../components/FeaturesSection";
-import { ProcessSection } from "../components/ProcessSection";
-import { LocationSection } from "../components/LocationSection";
-import { Footer } from "../components/Footer";
-import { LiquidEther } from "@/components/ui/LiquidEther";
+import React from 'react';
+import { Header } from '@/components/Header';
+import { BannerSection } from '@/components/BannerSection';
+import { MaterialitySection } from '@/components/MaterialitySection';
+import { FeaturesSection } from '@/components/FeaturesSection';
+import { CTASection } from '@/components/CTASection';
+import { Footer } from '@/components/Footer';
 
 export function Index() {
   return (
-    <div className="relative min-h-screen">
-      <LiquidEther className="opacity-40" />
+    <main className="bg-background selection:bg-accent selection:text-white">
       <Header />
-      <main>
-        <BannerSection />
-        <FeaturesSection />
-        <ProcessSection />
-        <LocationSection />
-      </main>
+      <BannerSection />
+      <MaterialitySection />
+      <FeaturesSection />
+      <CTASection />
       <Footer />
-    </div>
+    </main>
   );
 }

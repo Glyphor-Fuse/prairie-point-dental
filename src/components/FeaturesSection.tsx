@@ -1,60 +1,48 @@
-import { motion } from "framer-motion";
-import { Shield, Activity, Heart, Wind } from "lucide-react";
+import React from 'react';
+import { motion } from 'framer-motion';
+import { CheckCircle2, ShieldCheck, Microscope, Waves } from 'lucide-react';
+import { EntranceAnimation } from './EntranceAnimation';
 
 const features = [
   {
-    icon: <Activity className="w-8 h-8" />,
-    title: "Precision Diagnostics",
-    description: "Utilizing state-of-the-art laboratory analysis to build your unique biological map."
+    icon: <Microscope className="w-8 h-8 text-accent" />,
+    title: "Surgical Clarity",
+    description: "High-key surgical environments utilize the latest in medical lighting and ultra-sterile airflow systems."
   },
   {
-    icon: <Shield className="w-8 h-8" />,
-    title: "Preventative Architecture",
-    description: "Medical care designed around longevity, not just recovery."
+    icon: <ShieldCheck className="w-8 h-8 text-accent" />,
+    title: "Clinical Precision",
+    description: "Board-certified expertise meeting the highest standards of Texas medical licensure and safety protocols."
   },
   {
-    icon: <Wind className="w-8 h-8" />,
-    title: "Sanctuary Environment",
-    description: "Our clinics are designed with natural limestone, native flora, and acoustic perfection."
-  },
-  {
-    icon: <Heart className="w-8 h-8" />,
-    title: "Concierge Wellness",
-    description: "24/7 access to your care team with a dedicated medical coordinator."
+    icon: <Waves className="w-8 h-8 text-accent" />,
+    title: "Aesthetic Rhythm",
+    description: "A patient journey designed for flow, reducing anxiety through architectural layout and ambient soundscapes."
   }
 ];
 
 export function FeaturesSection() {
   return (
-    <section id="services" className="py-32 px-micro-margin bg-secondary">
-      <div className="max-w-[1600px] mx-auto">
-        <div className="flex flex-col md:flex-row justify-between items-end mb-24 gap-8">
-          <motion.div 
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            className="max-w-2xl"
-          >
-            <h2 className="text-4xl md:text-5xl font-serif text-primary mb-6">Built for those who demand precision.</h2>
-            <div className="h-1 w-24 bg-accent" />
-          </motion.div>
-          <p className="text-muted-foreground max-w-md uppercase tracking-[0.2em] text-sm">Our Core Pillars</p>
-        </div>
+    <section className="py-32 bg-secondary/50">
+      <div className="container mx-auto px-gutter">
+        <EntranceAnimation>
+          <div className="text-center max-w-2xl mx-auto mb-20">
+            <h2 className="text-5xl mb-6">Built for Excellence</h2>
+            <p className="text-foreground/60">Modern surgery demands more than just technology. It requires an atmosphere of trust, precision, and tranquility.</p>
+          </div>
+        </EntranceAnimation>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-16">
           {features.map((feature, idx) => (
-            <motion.div
-              key={idx}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: idx * 0.1 }}
-              className="p-8 bg-background border border-muted hover:border-accent transition-colors group"
-            >
-              <div className="text-accent mb-6 group-hover:scale-110 transition-transform duration-300">
-                {feature.icon}
+            <EntranceAnimation key={idx} delay={idx * 0.1}>
+              <div className="flex flex-col items-center text-center">
+                <div className="mb-8 p-6 bg-white shadow-xl shadow-primary/5 rounded-full">
+                  {feature.icon}
+                </div>
+                <h3 className="text-2xl mb-4 font-bold tracking-tight">{feature.title}</h3>
+                <p className="text-foreground/60 leading-relaxed">{feature.description}</p>
               </div>
-              <h3 className="text-xl font-serif text-primary mb-4">{feature.title}</h3>
-              <p className="text-muted-foreground leading-relaxed">{feature.description}</p>
-            </motion.div>
+            </EntranceAnimation>
           ))}
         </div>
       </div>

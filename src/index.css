@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,700;1,700&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -6,68 +6,60 @@
 
 @layer base {
   :root {
-    --background: 40 20% 98%;
-    --foreground: 210 20% 15%;
-    --primary: 202 45% 35%;
-    --primary-foreground: 38 40% 98%;
-    --secondary: 38 40% 92%;
-    --secondary-foreground: 210 20% 25%;
-    --accent: 22 55% 58%;
-    --accent-foreground: 38 40% 98%;
-    --muted: 35 30% 85%;
-    --muted-foreground: 210 15% 40%;
-    --border: 35 20% 88%;
-    --input: 35 20% 88%;
-    --ring: 202 45% 35%;
+    /* Manifesto: primary 210 35% 35%, secondary 35 30% 92%, accent 28 75% 55%, background 40 10% 98%, foreground 210 25% 12%, muted 35 15% 85% */
+    --background: 40 10% 98%;
+    --foreground: 210 25% 12%;
+
+    --primary: 210 35% 35%;
+    --primary-foreground: 40 10% 98%;
+
+    --secondary: 35 30% 92%;
+    --secondary-foreground: 210 35% 35%;
+
+    --accent: 28 75% 55%;
+    --accent-foreground: 40 10% 98%;
+
+    --muted: 35 15% 85%;
+    --muted-foreground: 210 25% 30%;
+
+    --border: 35 15% 80%;
+    --input: 35 15% 80%;
+    --ring: 210 35% 35%;
+    
+    --radius: 0rem;
   }
 }
 
-body {
-  @apply bg-background text-foreground font-sans overflow-x-hidden;
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground selection:bg-accent/30 selection:text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+  h1, h2, h3, h4 {
+    @apply font-editorial font-bold tracking-tight;
+  }
 }
 
-.limestone-divider {
-  @apply relative;
+.limestone-texture {
+  background-image: url("https://www.transparenttextures.com/patterns/natural-paper.png");
+  opacity: 0.4;
 }
 
-.limestone-divider::before {
-  content: "";
-  @apply absolute left-0 top-0 bottom-0 w-[2px] bg-muted block h-full;
+.glass-morphism {
+  @apply bg-white/20 backdrop-blur-md border border-white/30;
 }
 
 .editorial-grid {
   display: grid;
   grid-template-columns: repeat(12, 1fr);
   gap: 2rem;
-  padding-left: 8vw;
-  padding-right: 8vw;
 }
 
-
-/* Pexels Image Attribution Styles */
-.image-slot {
-  position: relative;
-  width: 100%;
-  overflow: hidden;
-  border-radius: 8px;
-}
-.image-slot img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center;
-  display: block;
-}
-.image-attribution {
-  position: absolute;
-  bottom: 4px;
-  right: 8px;
-  font-size: 10px;
-  color: rgba(255,255,255,0.7);
-  text-shadow: 0 1px 2px rgba(0,0,0,0.6);
-  text-decoration: none;
-  transition: color 0.2s ease;
-}
-.image-attribution:hover {
-  color: rgba(255,255,255,0.95);
+@media (min-width: 1024px) {
+  .editorial-grid {
+    gap: 4rem;
+  }
 }

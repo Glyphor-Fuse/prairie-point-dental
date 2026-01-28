@@ -1,34 +1,78 @@
-import { motion } from "framer-motion";
-import { Menu, Search } from "lucide-react";
+import React, { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Menu, X, ArrowRight } from 'lucide-react';
 
 export function Header() {
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => setIsScrolled(window.scrollY > 50);
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const navLinks = [
+    { name: 'Practices', href: '#' },
+    { name: 'Experience', href: '#' },
+    { name: 'Materials', href: '#' },
+    { name: 'Contact', href: '#' },
+  ];
+
   return (
-    <motion.header 
+    <motion.header
       initial={{ y: -100 }}
       animate={{ y: 0 }}
-      className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-muted px-micro-margin py-6"
+      className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ${
+        isScrolled ? 'bg-background/80 backdrop-blur-md py-4 border-b' : 'bg-transparent py-8'
+      }`}
     >
-      <nav className="flex items-center justify-between max-w-[1600px] mx-auto">
-        <div className="flex items-center gap-2">
-          <div className="w-8 h-8 bg-primary rounded-sm rotate-45" />
-          <span className="text-xl font-serif font-bold tracking-tight text-primary uppercase">
-            Austin <span className="font-light">Precision</span>
-          </span>
-        </div>
-        
-        <div className="hidden md:flex items-center gap-12 text-sm font-medium tracking-widest uppercase">
-          <a href="#services" className="hover:text-accent transition-colors">Services</a>
-          <a href="#about" className="hover:text-accent transition-colors">Philosophy</a>
-          <a href="#location" className="hover:text-accent transition-colors">Sanctuary</a>
-          <button className="px-6 py-2 bg-primary text-primary-foreground hover:bg-accent transition-colors">
-            Consultation
-          </button>
-        </div>
+      <div className="container mx-auto flex items-center justify-between px-gutter">
+        <a href="/" className="text-xl font-bold tracking-widest text-primary uppercase">
+          ASA <span className="font-light text-foreground/40">/ Surgical Arts</span>
+        </a>
 
-        <div className="md:hidden">
-          <Menu className="w-6 h-6" />
-        </div>
-      </nav>
+        <nav className="hidden md:flex items-center gap-12">
+          {navLinks.map((link) => (
+            <a
+              key={link.name}
+              href={link.href}
+              className="text-sm font-medium tracking-widest uppercase text-foreground/70 hover:text-primary transition-colors"
+            >
+              {link.name}
+            </a>
+          ))}
+          <button className="bg-primary text-secondary px-8 py-3 text-xs tracking-widest uppercase font-bold hover:bg-accent transition-all">
+            Inquire
+          </button>
+        </nav>
+
+        <button className="md:hidden text-foreground" onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
+          {isMobileMenuOpen ? <X /> : <Menu />}
+        </button>
+      </div>
+
+      <AnimatePresence>
+        {isMobileMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: 'auto' }}
+            exit={{ opacity: 0, height: 0 }}
+            className="md:hidden bg-secondary border-b overflow-hidden"
+          >
+            <div className="flex flex-col p-8 gap-6">
+              {navLinks.map((link) => (
+                <a key={link.name} href={link.href} className="text-lg font-editorial">
+                  {link.name}
+                </a>
+              ))}
+              <button className="bg-primary text-secondary p-4 flex items-center justify-center gap-2">
+                Inquire <ArrowRight size={16} />
+              </button>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </motion.header>
   );
 }
