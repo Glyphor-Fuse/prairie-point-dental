@@ -2,49 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer base {
-  :root {
-    --background: 40 25% 98%;
-    --foreground: 220 20% 12%;
-    --primary: 215 35% 30%;
-    --primary-foreground: 40 25% 98%;
-    --secondary: 38 45% 94%;
-    --secondary-foreground: 215 35% 30%;
-    --accent: 32 70% 45%;
-    --accent-foreground: 40 25% 98%;
-    --muted: 180 5% 85%;
-    --muted-foreground: 215 35% 30%;
-    --border: 215 35% 85%;
-    --input: 215 35% 95%;
-    --ring: 32 70% 45%;
-    --radius: 0.5rem;
-  }
-}
-
-@layer base {
-  * {
-    @apply border-border;
-  }
-  body {
-    @apply bg-background text-foreground;
-    font-feature-settings: "rlig" 1, "calt" 1;
-  }
-  h1, h2, h3, h4 {
-    @apply font-serif font-bold tracking-ultra-tight;
-  }
-}
-
-.limestone-layer {
-  @apply bg-secondary/80 backdrop-blur-sm border border-white/20 shadow-xl;
-  background-image: url('https://www.transparenttextures.com/patterns/cubes.png');
-  background-blend-mode: overlay;
-}
-
-.oak-divider {
-  @apply h-px w-full bg-accent/20 relative overflow-hidden;
-}
-
-.oak-divider::after {
-  content: '';
-  @apply absolute top-0 left-0 h-full w-1/3 bg-accent;
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
